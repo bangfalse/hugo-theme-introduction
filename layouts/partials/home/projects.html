@@ -23,7 +23,7 @@
                                 <a {{ if .Params.external_link }} href="{{ .Params.external_link }}" {{ end }}>
                                     {{ with .Resources.ByType "image" }}
                                     {{ range first 1 (sort . "Params.weight") }}
-                                    {{ $image := .Resize $width }}
+                                    {{ $image := .Resize (printf "%s %s" $width "Gaussian") }}
                                     <img class="card-thumbnail" src="{{ $image.Permalink }}" alt ="{{ $image.Name }}">
                                     {{ end }}
                                     {{ end }}
@@ -65,7 +65,7 @@
             <div class="owl-carousel owl-theme">
             {{ end }}
                 {{ range sort . "Params.weight" }}
-                    {{ $image := .Resize "640x" }}
+                    {{ $image := .Resize "640x Gaussian" }}
                     {{ if $moreThenOneImage }}
                     <div class="item owl-height">
                     {{ end }}
