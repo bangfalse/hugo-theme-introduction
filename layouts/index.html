@@ -49,6 +49,10 @@
             {{ $pages = $pages | append . }}
         {{ end }}
 
+        {{ with .Site.GetPage "/watch-screenshots" }}
+            {{ $pages = $pages | append . }}
+        {{ end }}
+
         {{ with .Site.GetPage "/projects" }}
             {{ $pages = $pages | append . }}
         {{ end }}
@@ -59,6 +63,8 @@
         {{ if eq (os.Stat .File.Dir).Name "projects" }}
             <!-- Now for some cool projects -->
             {{ partial "home/projects.html" . }}
+        {{ else if eq (os.Stat .File.Dir).Name "watch-screenshots" }}
+            {{ partial "home/watch-screenshots.html" . }}
         {{ else if eq (os.Stat .File.Dir).Name "blog" }}
             <!-- Let`s show some blog posts -->
             {{ partial "home/blog.html" . }}

@@ -20,8 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Modal closer
 $('.card').click(function () {
-  $($(this).attr('data-target')).addClass('is-active')
-  $('html').addClass('modal-open')
+  if ($(this).attr('data-target') != null) {
+    $($(this).attr('data-target')).addClass('is-active')
+    $('html').addClass('modal-open')
+  }
 })
 $('.modal-close').click(function () {
   $($(this).attr('data-target')).removeClass('is-active')

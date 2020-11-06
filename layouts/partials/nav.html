@@ -51,6 +51,10 @@
                 {{ $pages = $pages | append . }}
             {{ end }}
 
+            {{ with .Site.GetPage "/watch-screenshots" }}
+                {{ $pages = $pages | append . }}
+            {{ end }}
+
             {{ range sort $pages "Params.weight" }}
             {{ if ne .Name "contact.md" }}
             {{ if eq (os.Stat .File.Dir).Name "projects" }}
@@ -62,6 +66,24 @@
                 {{ if not (and $pageIsInProjects (eq $.Page.Kind "section")) }}
                   <a class="navbar-item" href="{{ .Permalink }}">
                   {{ if $pageIsInProjects }}
+                  {{ i18n "nav_backToSection" . }}
+                  {{ else }}
+                  <!-- fix-224 -->
+                  {{ .Title }}
+                  <!-- end fix-224 -->
+                  {{ end }}
+                  </a>
+                {{ end }}
+                {{ end }}
+            {{ else if eq (os.Stat .File.Dir).Name "watch-screenshots" }}
+                <!-- Now for some watch screenshots -->
+                {{ if $isHome }}
+                <a class="navbar-item" href="{{ printf "#%s" ( .Title | urlize) | relLangURL }}">{{ .Title | markdownify }}</a>
+                {{ else }}
+                {{ $pageIsInScreenshots := eq $.Page.Section "watch-screenshots"}}
+                {{ if not (and $pageIsInScreenshots (eq $.Page.Kind "section")) }}
+                  <a class="navbar-item" href="{{ .Permalink }}">
+                  {{ if $pageIsInScreenshots }}
                   {{ i18n "nav_backToSection" . }}
                   {{ else }}
                   <!-- fix-224 -->
