@@ -64,7 +64,7 @@
                 {{ else }}
                 {{ $pageIsInProjects := eq $.Page.Section "project"}}
                 {{ if not (and $pageIsInProjects (eq $.Page.Kind "section")) }}
-                  <a class="navbar-item" href="{{ .Permalink }}">
+                  <a class="navbar-item" href="{{ .RelPermalink }}">
                   {{ if $pageIsInProjects }}
                   {{ i18n "nav_backToSection" . }}
                   {{ else }}
@@ -82,7 +82,7 @@
                 {{ else }}
                 {{ $pageIsInScreenshots := eq $.Page.Section "watch-screenshots"}}
                 {{ if not (and $pageIsInScreenshots (eq $.Page.Kind "section")) }}
-                  <a class="navbar-item" href="{{ .Permalink }}">
+                  <a class="navbar-item" href="{{ .RelPermalink }}">
                   {{ if $pageIsInScreenshots }}
                   {{ i18n "nav_backToSection" . }}
                   {{ else }}
@@ -100,7 +100,7 @@
                 {{ else }}
                 {{ $pageIsInBlog := eq $.Page.Section "blog"}}
                 {{ if not (and $pageIsInBlog (eq $.Page.Kind "section")) }}
-                  <a class="navbar-item" href="{{ .Permalink }}">
+                  <a class="navbar-item" href="{{ .RelPermalink }}">
                   {{ if $pageIsInBlog }}
                   {{ i18n "nav_backToSection" . }}
                   {{ else }}
@@ -124,7 +124,7 @@
 
             {{ range $.Site.Home.AllTranslations.ByWeight }}
             {{ if ne .Language.LanguageName $.Language.LanguageName }}
-            <a class="navbar-item" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            <a class="navbar-item" href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>
             {{ end }}
             {{ end }}
 

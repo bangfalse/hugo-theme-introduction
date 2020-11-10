@@ -24,7 +24,7 @@
                                     {{ with .Resources.ByType "image" }}
                                     {{ range first 1 (sort . "Params.weight") }}
                                     {{ $image := . }}
-                                    <img class="card-thumbnail" src="{{ $image.Permalink }}" alt ="{{ $image.Name }}">
+                                    <img class="card-thumbnail" src="{{ $image.RelPermalink }}" alt ="{{ $image.Name }}">
                                     {{ end }}
                                     {{ end }}
                                 </a>
@@ -42,7 +42,7 @@
         </div>
         {{ if lt $numberOfProjectsToShow $totalProjects }}
         <div class="container has-text-centered top-pad">
-            <a href="{{ .Permalink }}">{{ i18n "index_projects_allProjects" . }}</a>
+            <a href="{{ .RelPermalink }}">{{ i18n "index_projects_allProjects" . }}</a>
         </div>
         {{ end }}
     </div>
@@ -69,7 +69,7 @@
                     {{ if $moreThenOneImage }}
                     <div class="item owl-height">
                     {{ end }}
-                        <img src="{{ $image.Permalink }}" class="img-responsive" alt="{{ $image.Name }}">
+                        <img src="{{ $image.RelPermalink }}" class="img-responsive" alt="{{ $image.Name }}">
                     {{ if $moreThenOneImage }}
                     </div>
                     {{ end }}

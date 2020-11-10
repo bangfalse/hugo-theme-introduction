@@ -26,7 +26,7 @@
                                     {{ with .Resources.ByType "image" }}
                                     {{ range first 1 (sort . "Params.weight") }}
                                     {{ $image := . }}
-                                    <img class="card-thumbnail" src="{{ $image.Permalink }}" alt ="{{ $image.Name }}">
+                                    <img class="card-thumbnail" src="{{ $image.RelPermalink }}" alt ="{{ $image.Name }}">
                                     {{ end }}
                                     {{ end }}
                                 {{ if .Params.external_link }}
@@ -74,7 +74,7 @@
                     {{ if $moreThenOneImage }}
                     <div class="item owl-height">
                     {{ end }}
-                        <img src="{{ $image.Permalink }}" class="img-responsive" alt="{{ $image.Name }}">
+                        <img src="{{ $image.RelPermalink }}" class="img-responsive" alt="{{ $image.Name }}">
                     {{ if $moreThenOneImage }}
                     </div>
                     {{ end }}
